@@ -1,3 +1,4 @@
+@@ -1,42 +1,45 @@
 options:
   logging: CLOUD_LOGGING_ONLY  # Ensures logs are sent to Cloud Logging
 
