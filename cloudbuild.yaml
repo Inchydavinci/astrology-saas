@@ -39,4 +39,8 @@ steps:
         sudo systemctl restart backend
         sudo systemctl restart frontend
 
-timeout: "1200s"
+timeout: 1200s
+
+options:
+  logging: GCS
+  logBucket: "mycosmicblueprint-logs-bucket"
