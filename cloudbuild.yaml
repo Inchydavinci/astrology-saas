@@ -1,6 +1,4 @@
-cd /path/to/your/local/repo
-touch cloudbuild.yaml
-nano cloudbuild.yaml  # Or use any text editor
+
 steps:
   # Step 1: Install dependencies and build the frontend
   - name: node:18
