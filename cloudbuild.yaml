@@ -1,5 +1,4 @@
 steps:
-  # Step 1: Install dependencies and build the frontend
   - name: node:18
     id: Build Frontend
     dir: frontend
@@ -10,7 +9,6 @@ steps:
         npm install
         npm run build
 
-  # Step 2: Install backend dependencies
   - name: python:3.10
     id: Install Backend Dependencies
     dir: backend
@@ -20,7 +18,6 @@ steps:
       - |
         pip install -r requirements.txt
 
-  # Step 3: Deploy frontend to the server directory
   - name: gcr.io/cloud-builders/rsync
     id: Deploy Frontend
     args:
@@ -28,7 +25,6 @@ steps:
       - ./frontend/dist/
       - /var/www/astrology-saas/frontend/dist/
 
-  # Step 4: Restart services (Nginx & backend)
   - name: gcr.io/cloud-builders/gcloud
     id: Restart Services
     entrypoint: bash
@@ -42,5 +38,4 @@ steps:
 timeout: 1200s
 
 options:
-  logging: GCS
-  logBucket: "mycosmicblueprint-logs-bucket"
+  logging: CLOUD_LOGGING_ONLY
