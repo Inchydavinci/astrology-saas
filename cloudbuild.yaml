@@ -1,6 +1,3 @@
-options:
-  logging: CLOUD_LOGGING_ONLY
-
 steps:
   # Step 1: Install dependencies and build the frontend
   - name: node:18
@@ -13,7 +10,7 @@ steps:
         npm install
         npm run build
 
-  # Step 2: Build and run the backend using Python
+  # Step 2: Install backend dependencies
   - name: python:3.10
     id: Install Backend Dependencies
     dir: backend
@@ -31,7 +28,7 @@ steps:
       - ./frontend/dist/
       - /var/www/astrology-saas/frontend/dist/
 
-  # Step 4: Restart Nginx and Uvicorn services
+  # Step 4: Restart services (Nginx & backend)
   - name: gcr.io/cloud-builders/gcloud
     id: Restart Services
     entrypoint: bash
@@ -39,7 +36,7 @@ steps:
       - -c
       - |
         sudo systemctl restart nginx
-        sudo systemctl restart frontend
         sudo systemctl restart backend
+        sudo systemctl restart frontend
 
 timeout: 1200s
