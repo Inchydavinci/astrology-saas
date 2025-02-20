@@ -1,5 +1,7 @@
-options:
-  logging: CLOUD_LOGGING_ONLY
+options
+< HEAD
+  logging: CLOUD_LOGGING_ONLY  # Ensures logs are sent to Cloud Logging
+> 51fcef1 (Add logging option to Cloud Build configuration)
 
 steps:
   # Step 1: Install dependencies and build the frontend
